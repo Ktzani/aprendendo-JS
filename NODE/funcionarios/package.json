@@ -1,0 +1,19 @@
+{ 
+  "name": "funcionarios",
+  "version": "1.0.0",
+  "description": "Muito legal",
+
+  "main": "funcionarios.js",
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo\"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gabriel",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "download": "^8.0.0",
+    "lodash": "^4.17.21"
+  }
+}
