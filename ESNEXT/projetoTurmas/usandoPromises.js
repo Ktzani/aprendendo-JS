@@ -28,10 +28,10 @@ const getTurma = letra => {
         })
     })
 }
-
+/*
 let nomes = []
 
-//callback uma dentro da outra usando o then:
+//callback uma dentro da outra usando o then: -> Nesse caso faço chamadas sequenciais, ou seja, vou fazendo de um em um
 getTurma('A').then(alunos => {
     nomes = nomes.concat(alunos.map(a => `A: ${a.nome}`))
     getTurma('B').then(alunos => {
@@ -42,9 +42,18 @@ getTurma('A').then(alunos => {
         })
     })
 }) 
+*/
 
-//apenas usando artimanhas do promise: 
+//apenas usando artimanhas do promise:  -> Nesse caso, diferente do de cima , disparo paralelamente, espero a resolução 
+//de todas as promises para ai sim começar a executar o passo a passo
 //Passo varios promises para ela e quando todas elas forem resolvidos ele vai chamar a cadeia de metodos then
 Promise. all([getTurma('A'), getTurma('B'), getTurma('C')])
-    .then(x => console.log(x))
-    .then()
+    .then(turmas => [].concat(...turmas)) //terei um unico array com todos os alunos 
+    .then(alunos => alunos.map(aluno => aluno.nome))
+    .then(nomes => console.log(nomes))
+    .catch(e => console.log(e.message)) //Muito importante com a promise que façamos o tratamento de erro com o catch 
+    //.then(x => console.log(x))
+
+
+//OBS: CAINDO NO REJECT -> pegando uma turma que não existe
+getTurma('D').catch(e => console.log(e.message))
