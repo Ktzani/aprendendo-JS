@@ -47,7 +47,7 @@ getTurma('A').then(alunos => {
 //apenas usando artimanhas do promise:  -> Nesse caso, diferente do de cima , disparo paralelamente, espero a resolução 
 //de todas as promises para ai sim começar a executar o passo a passo
 //Passo varios promises para ela e quando todas elas forem resolvidos ele vai chamar a cadeia de metodos then
-Promise. all([getTurma('A'), getTurma('B'), getTurma('C')])
+Promise.all([getTurma('A'), getTurma('B'), getTurma('C')])
     .then(turmas => [].concat(...turmas)) //terei um unico array com todos os alunos 
     .then(alunos => alunos.map(aluno => aluno.nome))
     .then(nomes => console.log(nomes))
