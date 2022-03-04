@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Origem CSS: Externo, Interno e Inline</title>
+
+    <!-- No css, o que tem preferência para ser executado é o que for processado por ultimo-->
+    <style>
+        body{
+            background-color: aquamarine;
+        }
+    </style>
+    <link rel="stylesheet" href="css/externo.css"> 
+</head>
+
+<!-- IMPORTANTE: NÃO é recomendado aplicar propriedades inline. É Sempre mais correto priorizar colocar css dentro 
+de arquivos. Embora ele tenha preferencia, não é uma boa prática-->
+<body style="background-color:coral;"> <!-- Nesse caso, independente da ordem, o css inline tem prioridade (maior preferência)-->
+    <h1>E agora?</h1>
+</body>
+
+</html>

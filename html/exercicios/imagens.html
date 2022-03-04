@@ -1,0 +1,180 @@
+<div wm-slider> 
+    <p> 
+        <!--A tag 'alt' é usada quando a tag principal, nesse caso a imagem, não é carregada-->
+        <!--src: fonte da imagem-->
+        <!--widht e height: tamanho da imagem-->
+        <!--title: quando você coloca o cursor em cima da imagem ela apresenta esse titulo-->
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" 
+        alt="Muro da cidade"
+        width="513" height="342"
+        title="Muro da cidade por Tarso Bessa">   
+    </p>
+
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" 
+        alt="Intro cod3r" height="342" >
+    </p>
+
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" 
+        alt="Rio de Janeiro" height="342">
+    </p>
+
+    <!--OBS: Da mesma forma que eu acesso links de forma relativa, eu acesso imagens de forma relativa como ../imgs/imagens.jpg-->
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" 
+        alt="Avatar" height="50" align="left"> <!--align é pra alinhar uma imagem dentro de um texto-->
+        TETCQWFRQWFQW QWF QFQW F QWF QWF QWFQ
+        WF QWF QWF QWF QWFQW FQW FQWF QWF QWF 
+        QWF QWFQW F QWFQW FQW FQW FWQF QWF QWFF QWF QWFQW WQF 
+        WQ FQWF QWF QWF QWF QF
+    </p>
+
+    <P class="cidade"></P>
+
+    <p>
+        <!-- Possibilidade de colocar varios fontes e imagens diferentes e em cima dessa imagens você pode aplicar
+        criterios para que essas imagens sejam exibidas ou não-->
+        <picture> 
+            <!--source: sao fontes onde cada uma vai ter uma imagem e uma condição e caso nenhuma seja atendida
+            a imagem com tag img que será mostrada, ou seja, a ultima-->
+            <!-- media: propriedade em que a imagem será exibida se a imagem for no minimo 600px, ou seja, um condição
+            caso não passe essa condição, ele vai descer e vai pra proxima imagem-->
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png"
+                media="(min-width: 600px)"> 
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="logo">
+
+            <!--PORTANTO, é uma forma de mostrar uma imagem ou outra de forma condicional
+            Obs: Tirando a propriedade media, ele sempre vai exibir a primeira-->
+        </picture>
+    </p>
+</div>
+
+
+<style>
+    p {
+        position: absolute;
+        display: none;
+    }
+
+    .circular {
+        width: 513px;
+        background-color: #444;
+
+    }
+
+    .texto{
+        width: 400px;
+    }
+
+    .texto img{ /*Dentro da classe texto eu vou aplicar algo a tag img*/
+        margin-right: 10px ;
+        margin-bottom: 2px;
+    }
+    
+    .cidade{ /*Criando uma imagem a partir de uma classe do css*/
+        width: 513px;
+        height: 342px;
+        background-image: url(http://files.cod3r.com.br/curso-web/imagem4.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+    /*
+    [wm-slider]{
+        width: 500px;
+        height: 300px;
+        border: 1px solid #000;
+    }
+    */
+
+</style>
+
+<script> 
+    //inicio e fim : posiçao de inicio e fim  
+    //passo: vai mover de quanto em quanto passos
+    //callback: função de quando terminar de mover um determinado elemento, ele vai chamar essa função callback,
+    //ou seja, eu preciso saber quando um elemento terminou o seu movimento
+    function mover (elem, inicio, fim, passo, callback) {
+        const novoInicio = inicio - passo;
+
+        //Enquanto nao for o fim, a imagem vai para esquerda:  
+        if(novoInicio >= fim) {
+            elem.style.left = novoInicio + 'px' //movendo para esquerda um quantidade de pixels a imagem
+
+            //Essa função que passei como parametro de forma recursiva será executado de 7 em 7 milisegundos 
+            //onde inicio é alterado
+            setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 7) 
+        }
+
+        //Chegando no fim: (acabei o movimento e assim chamo uma callback para notificar que o movimento foi finalizado)
+        else {  
+            callback()
+        }
+    }
+
+    /*
+    const p = document.querySelector('[wm-slider] > p') //pegando a primeira tag p da div com atributo 'wm-slider'
+    p.style.display = 'block';  
+
+    //A primeira imagem que pegamos moverá de 5 em 5 pixel de 1500 até -400
+    //OBS: -400 é porque sumirá da tela
+    mover(p, 1500, -530, 5, () => {
+        console.log('Terminou!!');
+    })
+    */
+
+    //Função que inicia todo processo
+    function slider () {
+        //pegando todas as tags do tipo p que estão na div wm-slider
+        const elementos = document.querySelectorAll('[wm-slider] > p') 
+
+        //OBS: um querySelectorAll retorna um nodeList e não um array, ou seja, não tem as mesma prorpriedades
+        //Por isso, para transforma-lo em um array tem uma função no array chamada array.from
+        const slides = Array.from(elementos);
+
+        exibirSlides(slides, slides[0])
+    }
+
+    //Função recursiva para que no final da exibição de um slide eu invoque um outro
+    //PERGUNTA: como vou saber que que um determinado slide acabou de terminar seu movimento?
+    //   - Pois tenho uma função callback que avisa quando o movimento acaba. Por isso dentro
+    //     exibir slide eu chamo a 'função mover'
+    function exibirSlides(slides, slide){
+        slide.style.display = 'block'
+        
+        //innerWidht dá a largura da pagina do browser
+        //clientWidht obtemos a largura da área da tag p a patir dessa propriedade   
+        /*Nesse caso, começa na beirada da pagina termina no final da area que representa a tag p */
+        const inicio = innerWidth
+        const fim = -slide.clientWidth 
+
+        slide.style.left = `${inicio}px` //começa a partir desse ponto o movimento 
+
+        mover(slide, inicio, fim, 5, () => {
+            slide.style.display = 'none';
+            exibirSlides(slides, getProximo(slides, slide));
+        })
+    }
+
+    //Lista de slides e o elementos atual
+    function getProximo(lista, atual) {
+        /*
+        let index;
+        for(i = 0; i < lista.lenght; i++){
+            if(atual === lista[i]){
+                index = i + 1
+            }
+        }
+
+        return i < lista.lenght ? lista[index] : lista[0];  
+        */
+
+        //OUU:
+        const i = lista.indexOf(atual) + 1;
+
+        return i < lista.length ? lista[i] : lista[0];  //lista[0] é para voltar para o inicio do slider caso não tenha mais imagens
+    }
+
+    slider();
+</script>

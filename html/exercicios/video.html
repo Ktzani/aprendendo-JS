@@ -1,0 +1,69 @@
+<!-- controls: faz aparecer os controles do video
+     autoplay: entrando na tela o video vai se iniciar
+     controlsList: muda as configs dos controles (nesse caso foi tirar o botão de download)-->
+     
+<video id="meuVideo" width="800" height="450" controls autoplay controlsList="nodownload">
+    <!--Usando essa tag vc pode aplicar videos com fontes diferentes-->
+    <source src="http://files.cod3r.com.br/curso-web/video.mp4" type="video/mp4">
+    Seu browser nao suporta a tag vídeo.
+</video>
+
+<!-- div de fora será responsavel por renderizar o progresso como um todo (área, cor, borda) e a div de dentro
+será responsável por preencher com uma cor essa barra de progresso -->
+<div wm-progresso="meuVideo" class="progresso">
+    <div></div>
+</div>
+
+<div>
+    <!-- IMPORTANTE: Usando uma propriedade propria trabalha-se de uma forma muito mais inteligente, já que 
+    pode ter o nome que quisermos e assim fica muito mais robusto e organizado -->
+    <button wm-play="meuVideo">PLAY</button>
+    <button wm-pause="meuVideo">PAUSE</button>
+</div> 
+
+<style>
+    .progresso {
+        height: 20px;
+        width: 500px;
+        border: solid 1px #444;
+        margin: 20px ;
+    }
+
+    .progresso > div {
+        background-color: yellow;
+        color: #fff;
+        height: 100%;
+        text-align: right;
+        font-size: 14px;
+        width: 0%; /* É essa opçao que vai fazer mudar o progresso de lugar para frente a medida que o vídeo passa*/
+    }
+
+    [wm-progresso="meuVideo"] > div {
+        color: black;
+    }
+
+    
+</style>
+
+<script>
+    function configurarVideo(id){
+        const video = document.getElementById(id);
+        video.oncontextmenu = () => false ; //impedindo do usuario clicar com o botão direito e ver o menu do video
+
+        document.querySelector(`[wm-play=${id}]`).onclick = e => video.play();
+            
+        document.querySelector(`[wm-pause=${id}]`).onclick = e=> video.pause();
+
+        setInterval(() => {
+            const percentual = (video.currentTime / video.duration) * 100
+            const valorDiv = document.querySelector(`[wm-progresso=${id}] > div`)
+
+            valorDiv.style.width = `${percentual}%`; 
+            valorDiv.innerHTML = `${percentual.toFixed(1)}%` //tag inner html é usado para colocar um texto dentro 
+                                                             //de uma div
+            valorDiv.innerHTML.style.color = '#d00'
+        }, 500);
+    }
+    
+    configurarVideo('meuVideo');
+</script>

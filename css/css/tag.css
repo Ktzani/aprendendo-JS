@@ -1,0 +1,25 @@
+body{
+    font-size: 40px;
+    /*margin: 0; O browser traz configurações padrões que conseguimos alterar*/ 
+}
+
+ul, ol {
+    padding: 0px; /*Tiramos o padding padrão de listas*/
+}
+
+li{
+    margin-left: 60px;
+}
+
+.tag{
+    border: solid 4px;
+    margin: 5px;
+}
+
+.tag label{
+    color: #fff;
+    font-size: 25px;
+    vertical-align: top; 
+    margin-right: 10px;
+    padding: 0px 5px 3px 3px;
+}

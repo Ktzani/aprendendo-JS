@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Anatomia CSS</title>
+    <style>
+        /*Um seletor pode ser de varios tipos diferentes: uma propriedade, um seletor, o proprio elemento html
+        Dentro desse seletor eu definirei todas proprieades css em que quero aplicar*/
+        .selector {
+            color: #fff; /*Codigo de cores*/
+            font-size: 30px; /*Unidades associadas a numeros*/
+            text-align: center; /*Valores predefinidos (texto centralizado nesse caso)*/
+            
+            /*Multiplos valores (tipo de linha*/
+            border: solid 3px navy; /*shorthand property: propriedades de acesso mais rápido, ou seja, eu posso 
+                                        aplicar o tamanho da borda, a cor e o tipo de traço em uma propriedade de 
+                                        css especifica, porém nesse caso eu fiz isso de uma mais direta apenas com 
+                                        uma propriedade*/
+
+            font-family: Helvetica, sans-serif; /*Alternancia, ou seja, eu alterno entre duas fontes. Caso uma não dê 
+                                                certo, eu aplico a segunda. Fazemos isso por meio da vírgula */
+
+            /*Funções*/
+            width: calc(100% - 30px); /*Ocupa 100% da tela e tirei 100px. Isso é um tipo de função do css*/
+
+            background-color: rgb(34, 153, 189);
+        }   
+
+        /*Usando uma pseudo-classe (:)*/ 
+        /* hover: Nesse caso temos uma pseudoclasse e ela será aplicada quando o mouse do usuario
+        passar por cima do componente, ou seja, a cor do background mudar quando passarmos por cima
+        
+        OBS: Uma pseudo-classe comum é quando um link ja foi visitado pelo usuario. Assim, coloca-se uma pseudo-classe em cima
+        desse link para quando ele for visitado para que esse link seja exibido de uma forma diferente 
+        */
+        .selector:hover{ /*Mouse passando por cima*/
+            background-color: orangered;
+        }
+
+
+         /*Usando uma pseudo-elemento (::) */ 
+        .selector::first-letter { /*Primeira letra de um elemento*/
+            font-size: 60px;
+            font-weight: bold;
+        }
+
+        /* -Padrão de nomenclatura?
+              dash-case ou camelCase?*/
+
+        /*IMPORTANTE: o nome da classe do css é case sensitive, ou seja, tem diferença entre letra minuscula e
+        maiscula*/
+    </style>
+</head>
+
+<body>
+    <div class="selector">Conteúdo</div>
+</body>
+
+</html>

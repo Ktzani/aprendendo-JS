@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>Um pouco de CSS</title>
+        <link rel="stylesheet" href="umPoucoDeCSS.css">
+        <style>
+            h1 {
+                font-size: 20px;
+            }
+
+            /*Criando uma classe 'fundovermelho' para que eu possa aplicar essa classe em varios elementos
+            distintos dentro da minha pagina 
+            LEMBRAR: Para acessar uma classe do html em css e js é necessario colocar o ponto (.) */
+            .fundoVermelho {
+                background-color: #C00; 
+
+            }
+            
+            .negrito{
+                font-weight: bold;
+            }
+
+            /*Para pegar um id usamos # ao inves do .*/
+            #textoPrincipal {
+                font-size: 40px;
+                font-weight: bold;
+                font-style: italic;
+                color: #fff;
+                padding: 10px;
+                background-color: #444;
+                margin-bottom: 50px;
+            }
+            
+            /*OBS: Uma boa pratica da programação é pegar um atributo especifico e aplicar em varias tags diferentes 
+            para encontrar as tags que eu queira usar para aplicar alguma lógica em JavaScript, do que usar as classes,
+            que são mais usadas para estilo*/
+
+        </style>
+    </head>
+    <body>
+        <h1>CSS</h1>
+        <span id="textoPrincipal";">Texto 1</span><br><br><br>
+        <span class="fundoVermelho negrito">Texto 2</span><br><br>  
+        <span class="fundoVermelho" wm-atrib>Texto 3</span>  
+    </body>
+</html>
+
+<!--Propriedade id: identificador unico dentro de uma pagina-->
+
+<!--Propriedade class: também é um tipo de identificador associado com o uso de estilo para aplicar uma determinada
+classe mais de uma vez dentro da sua página. Portanto, podemos ter elementos com a mesma classe na mesma pagina
+ou ate mesmo um mesmo elemento ter mais de uma classe--> 
+
+<!--IMPORTANTE: id é UNICO e a classe css é algo que pode reusar, tanto é que pode-se ter multiplas classes aplicadas
+a um mesmo elemento-->

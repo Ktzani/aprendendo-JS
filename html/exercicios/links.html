@@ -1,0 +1,43 @@
+<h1>Links</h1>
+
+<!-- URL absoluta: deve-se colocar o protocolo http ou https --> 
+<a id="inicio" href="https://www.google.com.br">Google 1</a><br> <!-- Sai da pagina que vc está-->
+<a href="https://www.google.com.br" target="_blank">Google 2</a> <br><br>  <!-- Abertura do link em uma nova pagina-->
+
+<!-- URL relativa -->
+<a href="index.html">Voltar 1</a> <br> <!-- Acessando o index da pasta atual-->
+<a href="/index.html">Voltar 2</a> <br> <!-- Pega o raiz da aplicação (independente de onde esteja), de 
+                                        fato acessara o index a partir do raiz da aplicação-->
+<a href="../index.html">Voltar 3</a> <br> <br> <!-- Sai de uma pasta, volta pra pasta anterior e tenta acessar o index.html-->
+
+<!-- URL para enviar um email para um contato passado-->
+<!-- OBS: Faremos um css em line, ou seja, dentro da tag usando a propriedade style, colocar um css diretamente
+nela. EVITAR isso, pois não é uma boa prática-->
+<a href="mailto:email@empresa.com.br">Entre em contato</a>
+
+<span class="teste"></span> <!-- span.teste> cria um span com uma classe teste de maneira mais rapida-->
+<header id="cabecalho"></header>
+<footer class="rodape"></footer>
+
+<!-- div#noti: cria uma div com um id noticia de maneira mais rapida-->
+<!-- Navegando dentro da propria página internamente. Isso é chamado de ANCORA -->
+<div id="noticia" style="position:absolute; top:2000px;"> 
+    <h1>Noticia buemba!!</h1>
+    <p>Não era nada... :)</p>
+    <a href="#inicio">Voltar para o inicio da pagina</a>
+</div> 
+
+<a href="#noticia">Ir para Notícia</a>
+
+<!-- IMPORTANTE: Quando você faz uma submissão e manda isso pro backend, essa parte da url com #noticia, ou seja,
+a ancora, não vai para o backend. Você NÃO consegue acessar a 'ancora' que você está navegando dentro da página
+
+PORTANTO, se você tem uma ancora na sua navegação e fizer uma submissão dessa URL pro backend, a ancora não será
+enviada para lá 
+
+Exemplo: http://localhost:8080/exercicios/links.html#noticia-->
+
+
+ 
+
+

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Selectors</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        /*Universal '*' seleciona todo mundo*/
+
+        /* '.tag' seleciona os elementos com a classe tag*/
+
+        /* '#aprovados' seleciona o elemento com o id aprovados*/
+
+        /* '#aninhado > div' quer dizer que dentro do id 'aninhado' eu quero pegar o elemento div que esteja
+        diretamente dentro dele*/
+        /* OBS: '#aninhado > section': não vai conseguir acessar a section pois não esta diretamente dentro de div
+        porém #aninhado section funcionaria, já que assim qualquer descente de 'aninhado' do tipo 'section' será 
+        selecionado*/
+
+        /* 'p + ul' é um seletor de irmãos que são adjacentes
+        OBS: 'p + ol' não funcionará já que não sao irmãos adjacentes, porém colocando
+        'p ~ ol' funciona (general siblings), mesmo não sendo irmãos adjacentes */
+
+        /* [feira]: propriedade propria 'feira'*/
+        /* [feira=casa]: propridade própria feira com o valor casa
+        Obs:[feira=escritorio] não funciona, pois tem um espaço entre ele e logo em seguida 'empresa'. Para
+        isso funcionar tem que colocar '[feira~=escritorio]' para assim pegar possiveis elementos desses valores
+        que estão separados por espaço.
+        IMPORTANTE: Por isso, o espaço é importante para você definir os valores que estão de uma propriedade 
+        
+        [feira*=sa]: percorre os valores que estão associados aquele atributo vê se tem a palavra 'sa', ou seja,
+        percorre o texto e vê se está contido esse valor 'sa'*/
+        
+        /*span:nth-child(1): eu pego uma tag span que seja filho de alguem e esteja na primeira posição, ou seja,
+        seja o filho numero 1 de uma outra tag (eu quero o primeiro filho de alguem que é do tipo span). Portanto, 
+        em todas as tags me dê algum span que seja filho de alguem 
+        OBS: Nesse caso tenho que colocar na classe 'nolabel' em section, pois o primeiro filho dela
+        é um <label> devido ao nosso javaScript que fizemos, onde criamos o elemento label diretamente*/
+
+        /* 'section > :nth-child(odd)' : tenho uma section e dentro dessa section eu tenho os filhos ímpares, ou seja
+        dentro dessa section eu quero todos os filhos ímpares (pode ter o even para pares tb)
+        IMPORTANTE: efeito bom para uma tabela com os impares com uma cor e pares com outra*/
+
+        /* 'section > :nth-child(odd) label' : pega os descendentes desses elementos ímpares e aplica essas cores*/
+
+        /* 'section > span:nth-of-type(2)': vai olhar somente os elementos do tipo span que estão diretamente relacionados 
+        a section e me dará o segundo elemento que é um span*/
+        
+        section > span:nth-of-type(2){ 
+            color: #ff0;
+            background-color: #f77;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='tag'>
+        <div class='tag'>
+            <p class='tag'>1</p>
+            <ul class='tag' feira='casa'>
+                <li>Arroz</li>
+                <li>Feijão</li>
+            </ul>
+            <ul class='tag' feira='escritorio empresa'>
+                <li>Café</li>
+                <li>Água</li>
+            </ul>
+            <ol id='aprovados' class='tag'> <!-- li é um filho direto de ol -->
+                
+                <!--Irmãos geral (general sibling)-->
+
+                <li>Maria</li>
+                <!--Irmãos adjacentes (adjacent sibling)-->
+                <li>Pedro</li>
+                 <!--Irmãos adjacentes (adjacent sibling)-->
+                <li>Ana</li>
+            </ol>
+            <div id='aninhado' class='tag'> <!-- 'div' filha é um filho direto da 'div' pai (child), porém 'section' 
+                                                não é uma filho direto -->
+                <div class="tag">
+                    <section class='tag nolabel'>
+                        <span class='tag'>1</span> <!--Descendente da div pai-->
+                        <p class='tag'>2</p>  <!--Descendente da div pai-->
+                        <span class='tag'>3</span> <!--Descendente da div pai-->
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>

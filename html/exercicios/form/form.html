@@ -1,0 +1,79 @@
+<h1>Formulário</h1>
+
+<!-- Importante lembrar que usando o método GET os parametros vão DIRETAMENTE para a URL. Assim, no backend, para
+pegar essa informações deve ser a partir de um req.query (e não pelo req.body)-->
+
+<form method="POST">
+    <!-- Usamos o input hidden para carregar dados escondidos, ou seja, ele não aparece e guardamos um id dentro 
+    de um input escondido. Muito comum em aplicações do backend. Serve para guardar um valor que não queremos exibir
+    diretamente para o usuario-->
+    <input type="hidden" name="id" value="3">
+
+    <h2>Nome:</h2>
+    <input type="text" name="nome">  
+    <h2>Sobrenome:</h2>
+    <input type="text" name="sobrenome" >  
+    <h2>Senha:</h2>
+    <input type="password" name="senha"> 
+    <textarea name="bio" cols="30" rows="10"></textarea>
+    <div>
+        <!-- Vai selecionar entre os três, pois eles compartilham o mesmo name, ou seja, eu quero fazer a seleção
+        de apenas um dos elementos dessas opções-->
+        <!--IMPORTANTE: nesse caso preciso colocar values junto com o type radio, pois o que será enviado para o 
+        backend é o que está dentro de value, diferente do que ocorre com os outros tipos usados acima, que o que é
+        enviado é o que está dentro de name-->
+
+        <input type="radio" name="tipo" value="admin"> Admin<!-- Radio: bolinha para escolher-->
+        <input type="radio" name="tipo" value="regular"> Regular 
+        <input type="radio" name="tipo" value="professor"> Professor 
+    </div>
+    <div>
+        <!-- Será usado para criar uma check para variás opções-->
+        <input type="checkbox" name="ativo"> Ativo
+        <input type="checkbox" name="jogador"> Jogador
+    </div>
+
+    <h2>Estado</h2>
+    <select name="estado">
+        <option value="">Selecione o Estado</option>
+        <option value="ac">Acre</option>
+        <option value="ba">Bahia</option>
+        <option value="ce">Ceará</option>
+        <option value="mg">Minas Gerais</option> 
+    </select>
+
+    <h2>Cidade</h2>
+    <select name="cidade">
+        <option value="">Selecione a Cidade</option>
+        <option value="bh">Belo Horizonte</option>
+    </select>
+
+    <!-- select de multiplas OPÇÕES-->
+    <h2>Interesses</h2>
+    <select name="interesses" multiple size ="8">
+        <option value="JavaScript">JavaScript</option>
+        <option value="Java">Java</option>
+        <option value="php">PHP</option>
+        <option value="python">Python</option>
+        <option value="c">C</option>
+        <option value="c++">C++</option>
+        <option value="go">Go</option>
+    </select>
+
+    <!--Mandando requisições para caminhos diferentes a partir de um unico formulário-->
+    <!--OBSERVAÇÃO: Se eu quiser eu posso mudar o metodo do form para GET no botão usando 'formmethod'-->
+    <button formaction="http://localhost:3003/usuarios">Incluir</button>
+    <button formaction="http://localhost:3003/usuarios/3">Alterar</button> 
+
+</form>
+
+<style>
+    input, textarea, select{
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input[type=radio], input[type=checkbox]{
+        display: inline;
+    }
+</style>
